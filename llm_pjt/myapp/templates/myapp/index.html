@@ -1,43 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Index</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
-</head>
-<body>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <div class="dropdown">
-                <button class="dropbtn">&#9776;</button> <!-- Menu icon: hamburger menu -->
-                <div class="dropdown-content">
-                    <a href="#option1">Option 1</a>
-                    <a href="#option2">Option 2</a>
-                    <a href="#option3">Option 3</a>
-                </div>
-            </div>
-            <div class="auth-buttons">
-                <button onclick="location.href='/login/'">Login</button>
-                <button onclick="location.href='/signup/'">Sign Up</button>
-            </div>
-        </nav>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-header">
+        Chat
     </div>
-    <div class="container">
-        <div class="chat-container">
-            <div class="chat-header">
-                Chat
-            </div>
-            <div class="chat-body">
-                <!-- Chat messages will appear here -->
-            </div>
-            <div class="chat-footer">
-                <input type="text" placeholder="Type a message...">
-                <button>Send</button>
-            </div>
-        </div>
+    <div class="chat-body">
+        <!-- Chat messages will appear here -->
     </div>
-</body>
-</html>
+    <div class="chat-footer">
+        <input type="text" placeholder="Type a message...">
+        <button>Send</button>
+    </div>
+</div>
+{% endblock content %}

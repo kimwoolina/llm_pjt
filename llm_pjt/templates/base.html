@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Index</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="navbar-container">
+        <nav class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn">&#9776;</button> <!-- Menu icon: hamburger menu -->
+                <div class="dropdown-content">
+                    <a href="#option1">Option 1</a>
+                    <a href="#option2">Option 2</a>
+                    <a href="#option3">Option 3</a>
+                </div>
+            </div>
+            <div class="auth-buttons">
+                <a href="{% url 'accounts:login' %}" class="button-link">
+                    <button class="button">Login</button>
+                </a>
+                <a href="{% url 'accounts:signup' %}" class="button-link">
+                    <button class="button">Sign Up</button>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+
+</html>
