@@ -5,28 +5,24 @@ body {
     background-color: #f4f4f4;
 }
 
-.navbar-container {
-    width: 100%;
-    box-sizing: border-box; /* Ensure padding is included in width calculation */
-}
-
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%; /* Ensure navbar spans the full width of the screen */
-    padding: 10px 50px 10px 10px !important; /* Set left and right padding to 40px */
+    padding: 10px 20px; /* Set padding to 40px on left and right */
     background-color: #007bff;
     color: white;
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Distribute space between items */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 1000; /* Ensure navbar is above other content */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .navbar .dropdown {
     position: relative;
-    margin-right: auto; /* Push dropdown to the left if needed */
 }
 
 .navbar .dropdown-content {
@@ -39,7 +35,6 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     border-radius: 4px;
     z-index: 1000; /* Ensure dropdown content is above other content */
-    overflow: visible; /* Ensure dropdown content is visible */
 }
 
 .navbar .dropdown-content a {
@@ -69,10 +64,10 @@ body {
 }
 
 .navbar .auth-buttons {
-    margin-left: auto; /* Push buttons to the right */
+    display: flex; /* Ensure buttons are displayed in a row */
 }
 
-.navbar .auth-buttons button, .navbar .dropdown-content a {
+.navbar .auth-buttons button {
     margin-left: 10px;
     padding: 10px 20px;
     font-size: 16px;
@@ -84,7 +79,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.navbar .auth-buttons button:hover, .navbar .dropdown-content a:hover {
+.navbar .auth-buttons button:hover {
     background-color: #0056b3;
 }
 
@@ -95,10 +90,10 @@ body {
     justify-content: center;
     height: calc(100vh - 60px); /* Adjust height to account for navbar */
     margin-top: 60px; /* Adjust margin top to avoid overlap with navbar */
-    background-color: #fff;
+    background-color: #fff; /* Set background color to white */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin: 20px;
+    padding: 20px; /* Add padding inside container */
 }
 
 .chat-container {
