@@ -1,4 +1,4 @@
-# RealTimeWeatherBot
+# 
 A chatbot website that leverages **OpenAI's GPT model** and the **KMA (Korea Meteorological Administration) API** to provide real-time weather information. Users can input weather-related queries on the website, and the chatbot fetches the latest weather data through the KMA API to provide real-time responses.
 
 <br>
@@ -99,7 +99,7 @@ To set up and run the project, follow these steps:
 
 <br><br>
 
-## RESTful API Specification
+## API Documentation
 
 | Name          | Endpoint                | Method | Description                                                 |
 |---------------|--------------------------|--------|-------------------------------------------------------------|
