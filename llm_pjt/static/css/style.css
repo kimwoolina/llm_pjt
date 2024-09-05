@@ -9,16 +9,16 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Ensure navbar spans the full width of the screen */
-    padding: 10px 20px; /* Set padding to 40px on left and right */
+    width: 100%;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Distribute space between items */
+    justify-content: space-between;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    z-index: 1000; /* Ensure navbar is above other content */
-    box-sizing: border-box; /* Include padding in width calculation */
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
 .navbar .dropdown {
@@ -28,13 +28,13 @@ body {
 .navbar .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Align dropdown below the button */
-    left: 0; /* Align dropdown with the left edge of the dropdown button */
+    top: 100%;
+    left: 0;
     background-color: #007bff;
     min-width: 160px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     border-radius: 4px;
-    z-index: 1000; /* Ensure dropdown content is above other content */
+    z-index: 1000;
 }
 
 .navbar .dropdown-content a {
@@ -54,7 +54,7 @@ body {
 }
 
 .navbar .dropbtn {
-    font-size: 24px; /* Increase font size for icon */
+    font-size: 24px;
     background: none;
     border: none;
     color: white;
@@ -64,7 +64,7 @@ body {
 }
 
 .navbar .auth-buttons {
-    display: flex; /* Ensure buttons are displayed in a row */
+    display: flex;
 }
 
 .navbar .auth-buttons button {
@@ -88,12 +88,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 60px); /* Adjust height to account for navbar */
-    margin-top: 60px; /* Adjust margin top to avoid overlap with navbar */
-    background-color: #fff; /* Set background color to white */
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px; /* Add padding inside container */
+    padding: 20px;
 }
 
 .chat-container {
@@ -126,6 +126,7 @@ body {
     padding: 10px;
     overflow-y: auto;
     background-color: #fff;
+    position: relative;
 }
 
 .chat-footer {
@@ -158,4 +159,28 @@ body {
 
 .chat-footer button:hover {
     background-color: #0056b3;
+}
+
+/* 말풍선 */
+.chat-message {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Add shadow for better visibility */
+}
+
+.user-message {
+    background: #007bff;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: 15px; /* Adjust to create space between the message and right edge */
+}
+
+.bot-message {
+    background: #e5e5e5;
+    color: black;
+    margin-left: 15px; /* Adjust to create space between the message and left edge */
 }

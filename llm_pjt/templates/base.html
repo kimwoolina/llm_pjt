@@ -34,8 +34,23 @@
     </div>
     <div class="container">
         {% block content %}
+        <div class="chat-container">
+            <div class="chat-header">
+                Chat
+            </div>
+            <div class="chat-body" id="chat-body">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="user-message" placeholder="Type a message...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
         {% endblock content %}
     </div>
+
+    <!-- JavaScript File -->
+    <script src="{% static 'js/chat.js' %}" defer></script>
 </body>
 
 </html>
