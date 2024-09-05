@@ -1,43 +1,48 @@
+from llm_pjt.settings import SERVICE_KEY
 import requests
-from bs4 import BeautifulSoup
-from chatgpt.bots import translate_bot
 
-def get_techcrunch_articles():
-    url = 'https://techcrunch.com/'
-    response = requests.get(url)
-    response.raise_for_status()  # 요청 실패 시 예외 발생
-    soup = BeautifulSoup(response.text, 'html.parser')
-    articles = soup.find_all('article', class_='wp-block-group')
-    article_list = []
-    for article in articles:
-        title_tag = article.find('h2', class_='wp-block-post-title')
-        if title_tag:
-            link_tag = title_tag.find('a', href=True)
-            if link_tag:
-                href = link_tag.get('href')
-                text = link_tag.get_text(strip=True)
-                if href.startswith('https://techcrunch.com/') and text:
-                    article_list.append({'title': text, 'link': href})
-    return article_list
+url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
 
-def get_article_content_and_translate(article_url):
-    response = requests.get(article_url)
-    response.raise_for_status()  # 요청 실패 시 예외 발생
-    soup = BeautifulSoup(response.text, 'html.parser')
-    content_div = soup.find('div', class_='entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow')
-    if content_div:
-        content_text = content_div.get_text(strip=True)
-        if content_text:
-            translated_content = translate_bot(content_text)
-            return translated_content
-    return "기사 내용을 추출할 수 없습니다."
+# 현재 날짜와 시간을 기준으로 base_date와 base_time 설정
+from datetime import datetime
+now = datetime.now()
+base_date = now.strftime('%Y%m%d')
+base_time = now.strftime('%H%M')
 
-if __name__ == "__main__":
-    articles = get_techcrunch_articles()
-    for article in articles:
-        print(f"Title: {article['title']}")
-        print(f"Link: {article['link']}")
-        print()
-    selected_article_url = input("번역할 기사의 URL을 입력하세요: ")
-    translated_content = get_article_content_and_translate(selected_article_url)
-    print(f"Translated Content: {translated_content}")
+params = {
+    'serviceKey': SERVICE_KEY,
+    'pageNo': '1',
+    'numOfRows': '1000',
+    'dataType': 'JSON',
+    'base_date': base_date,
+    'base_time': base_time,
+    'nx': '55',
+    'ny': '127'
+}
+
+response = requests.get(url, params=params)
+data = response.json()  # JSON 형식으로 변환
+
+# 필요한 데이터 추출
+items = data['response']['body']['items']['item']
+
+# 각 항목에 대한 설명 추가
+descriptions = {
+    'PTY': '강수 형태',
+    'REH': '상대 습도 (%)',
+    'RN1': '1시간 강수량 (mm)',
+    'T1H': '기온 (°C)',
+    'UUU': '동서 방향 바람 성분 (m/s)',
+    'VEC': '바람 방향 (°)',
+    'VVV': '남북 방향 바람 성분 (m/s)',
+    'WSD': '바람 속도 (m/s)'
+}
+
+for item in items:
+    base_date = item['baseDate']
+    base_time = item['baseTime']
+    category = item['category']
+    obsr_value = item['obsrValue']
+    
+    description = descriptions.get(category, '설명 없음')
+    print(f"Date: {base_date}, Time: {base_time}, Category: {description}, Value: {obsr_value}")

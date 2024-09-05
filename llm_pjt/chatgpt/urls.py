@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
-
-app_name = "chatgpt"
+from .views import WeatherChatAPIView
 
 urlpatterns = [
+    path('weather-chat/', WeatherChatAPIView.as_view(), name='weather_chat'),
 ]

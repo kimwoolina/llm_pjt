@@ -1,23 +1,9 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.conf import settings
-from .weather import get_weather_data
-from .bots import ask_chatgpt
+from llm import ask_chatgpt
+from weather import get_weather_data
+from llm_pjt.settings import SERVICE_KEY, OPEN_API_KEY
 
-class WeatherChatAPIView(APIView):
-    def post(self, request):
-        user_message = request.data.get("message")
+# 시스템 안내 메시지 설정
 
-        # 날씨 정보 가져오기
-        weather_info = get_weather_data(settings.SERVICE_KEY)
-        
-        # 시스템 안내 메시지 생성
-        system_instructions = create_system_instructions(weather_info)
-
-        # ChatGPT에 메시지 전송
-        chatgpt_response = ask_chatgpt(user_message, system_instructions)
-
-        return Response({"message": chatgpt_response})
 
 def create_system_instructions(weather_info):
     return f"""
@@ -25,10 +11,10 @@ def create_system_instructions(weather_info):
 
 1. **통상적 또는 대략적인 날씨 정보**:
 - 🌏 현재 날씨: {weather_info.get('rain', '정보 없음')}
-- 🔼 최고 기온: {weather_info.get('highest_temp', '정보 없음')}°C
-- 🔽 최저 기온: {weather_info.get('lowest_temp', '정보 없음')}°C
+- 🔼 최고 기온: [최고 기온]°C
+- 🔽 최저 기온: [최저 기온]°C
 - 💧 습도 정도 : {weather_info.get('humidity', '정보 없음')}
-- 🔎 관측 지점: {weather_info.get('location', '정보 없음')}
+- 🔎 관측 지점: [관측 지점]
 
 예를 들어:
 - 🌏 현재 날씨: 비가 오지 않음
@@ -47,3 +33,19 @@ def create_system_instructions(weather_info):
 
 이러한 형식으로, 사용자가 원하는 정보에 맞게 적절히 대답해 주세요.
 """
+
+
+# 날씨 데이터 가져오기
+weather_info = get_weather_data(SERVICE_KEY)
+system_instructions = create_system_instructions(weather_info)
+
+# 대화 시작
+print("봇: 안녕하세요! 무엇을 도와드릴까요?\n")
+
+while True:
+    user_input = input("유저: ")
+    if user_input.lower() in ["종료", "exit"]:
+        print("봇: 대화가 종료되었습니다. 감사합니다!")
+        break
+    response = ask_chatgpt(user_input, system_instructions)
+    print(f"봇: {response}\n\n")

@@ -1,6 +1,7 @@
 import openai
 from llm_pjt.settings import OPEN_API_KEY
 
+# API 키 설정
 openai.api_key = OPEN_API_KEY
 
 def ask_chatgpt(user_message, system_instructions):
