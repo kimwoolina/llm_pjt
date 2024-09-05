@@ -1,9 +1,9 @@
 from openai import OpenAI
-from llm_pjt.config import OPENAI_API_KEY 
+from llm_pjt.settings import OPEN_API_KEY
 
 # 대신 터미널에서 export OPENAI_API_KEY="your_api_key_here" 도 가능
 CLIENT = OpenAI(
-    api_key=OPENAI_API_KEY,
+    api_key=OPEN_API_KEY,
 )
 
 
