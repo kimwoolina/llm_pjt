@@ -11,10 +11,12 @@ from myapp import views
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     re_path(r'^$', RedirectView.as_view(url='/index/', permanent=True)),
     path("index/", views.index, name="index"),
     path("accounts/", include("accounts.urls")),
     path("myapp/", include("myapp.urls")),
+    path("chatgpt/", include("chatgpt.urls")),
 ]
 
 
