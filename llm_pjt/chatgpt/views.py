@@ -6,8 +6,8 @@ from .bots import ask_chatgpt
 
 
 class WeatherChatAPIView(APIView):
-    def post(self, request):
-        user_message = request.data.get("message")
+    def get(self, request):
+        user_message = request.GET.get("message")
 
         # 날씨 정보 가져오기
         weather_info = get_weather_data(settings.SERVICE_KEY)
@@ -16,10 +16,13 @@ class WeatherChatAPIView(APIView):
         system_instructions = create_system_instructions(weather_info)
 
         # ChatGPT에 메시지 전송
-        chatgpt_response = ask_chatgpt(user_message, system_instructions)
+        try:
+            chatgpt_response = ask_chatgpt(user_message, system_instructions)
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)
 
         return Response({"message": chatgpt_response})
-
+    
 def create_system_instructions(weather_info):
     return f"""
 당신은 날씨 관련 정보를 제공하는 기상 전문가입니다. 

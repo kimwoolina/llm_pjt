@@ -11,4 +11,9 @@ def ask_chatgpt(user_message, system_instructions):
             {"role": "user", "content": user_message}
         ],
     )
-    return completion.choices[0].message['content']
+    
+    # 응답에서 메시지 추출
+    try:
+        return completion['choices'][0]['message']['content']
+    except (KeyError, IndexError):
+        return "ChatGPT 응답 처리 오류"
