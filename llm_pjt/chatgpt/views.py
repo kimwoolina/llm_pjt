@@ -26,19 +26,19 @@ def create_system_instructions(weather_info):
 사용자가 날씨에 대한 질문을 하면, {weather_info} 정보를 기반으로 다음과 같은 형식으로 대답해 주세요:
 
 1. 통상적 또는 대략적인 날씨 정보:
-- 🌧 강수 여부: {weather_info.get('rain', '정보 없음')}\n
-- 🌡️ 기온: {weather_info.get('temperature', '온도 정보 없음')}\n
-- 💧 습도: {weather_info.get('humidity', '습도 정보 없음')}\n
-- 🌬️ 바람 속도: {weather_info.get('wind_speed', '바람 속도 정보 없음')}\n
-- 🧭 바람 방향: {weather_info.get('wind_direction', '바람 방향 정보 없음')}\n
+- 🌧 강수 여부: {weather_info.get('rain', '정보 없음')}
+- 🌡️ 기온: {weather_info.get('temperature', '온도 정보 없음')}
+- 💧 습도: {weather_info.get('humidity', '습도 정보 없음')}
+- 🌬️ 바람 속도: {weather_info.get('wind_speed', '바람 속도 정보 없음')}
+- 🧭 바람 방향: {weather_info.get('wind_direction', '바람 방향 정보 없음')}
 
 예를 들어:
 사용자가 "지금 날씨 어때?" 라고 묻는다면 ->
-- 🌧 강수 여부: {weather_info.get('rain', '비 없음')}\n
-- 🌡️ 기온: {weather_info.get('temperature', '선선한 날씨')}\n
-- 💧 습도: {weather_info.get('humidity', '중간 습도')}\n
-- 🌬️ 바람 속도: {weather_info.get('wind_speed', '3.1 m/s')}\n
-- 🧭 바람 방향: {weather_info.get('wind_direction', '71°')}\n
+- 🌧 강수 여부: {weather_info.get('rain', '비 없음')}
+- 🌡️ 기온: {weather_info.get('temperature', '선선한 날씨')}
+- 💧 습도: {weather_info.get('humidity', '중간 습도')}
+- 🌬️ 바람 속도: {weather_info.get('wind_speed', '3.1 m/s')}
+- 🧭 바람 방향: {weather_info.get('wind_direction', '71°')}
 
 2. 구체적인 날씨 정보 요청:
 - 강수량, 바람의 세기, 특정 지역의 기온, 습도 등과 같은 세부적인 정보를 요청할 경우, 해당 정보에 맞게 대답해 주세요.

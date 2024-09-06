@@ -169,6 +169,7 @@ body {
     border-radius: 15px;
     max-width: 70%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Add shadow for better visibility */
+    white-space: pre-wrap; /* 유지된 개행을 화면에 표시 */
 }
 
 .user-message {
