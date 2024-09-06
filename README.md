@@ -1,5 +1,6 @@
-# 
-A chatbot website that leverages **OpenAI's GPT model** and the **KMA (Korea Meteorological Administration) API** to provide real-time weather information. Users can input weather-related queries on the website, and the chatbot fetches the latest weather data through the KMA API to provide real-time responses.
+# WeatherNow
+A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the **Korea Meteorological Administration (KMA) API** to provide not only real-time weather data but also versatile responses based on user queries. The platform offers both a chatbot interface for direct user interaction and API services for weather data retrieval. Users can query weather conditions, and the system will fetch the latest data from the KMA API and provide real-time, context-aware responses.
+
 
 <br>
 
@@ -103,5 +104,5 @@ To set up and run the project, follow these steps:
 
 | Name          | Endpoint                | Method | Description                                                 |
 |---------------|--------------------------|--------|-------------------------------------------------------------|
-| Weather Query | `/chatgpt/weather-chat/` | POST   | Endpoint for sending weather-related queries to the chatbot. The chatbot retrieves real-time weather data from the KMA API and provides a response. |
+| Weather Query | `/chatgpt/weather-chat/` | POST   | Endpoint for Retrieving Real-Time Weather Data from the KMA API and provides a response. |
 
