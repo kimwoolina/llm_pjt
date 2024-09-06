@@ -106,3 +106,12 @@ To set up and run the project, follow these steps:
 |---------------|--------------------------|--------|-------------------------------------------------------------|
 | Weather Query | `/chatgpt/weather-chat/` | POST   | Endpoint for Retrieving Real-Time Weather Data from the KMA API and provides a response. |
 
+<br><br>
+
+## UI Screenshots
+`http://127.0.0.1:8000/index/`
+<img width="1424" alt="스크린샷 2024-09-07 오전 5 00 10" src="https://github.com/user-attachments/assets/5780fc1a-86ee-4a8a-affd-a340756f79ed">
+
+<img width="1421" alt="스크린샷 2024-09-07 오전 5 04 05" src="https://github.com/user-attachments/assets/393f4507-ffea-438c-80ef-09ed75c99b6e">
+
+
