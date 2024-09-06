@@ -104,7 +104,7 @@ To set up and run the project, follow these steps:
 
 | Name          | Endpoint                | Method | Description                                                 |
 |---------------|--------------------------|--------|-------------------------------------------------------------|
-| Weather Query | `/chatgpt/weather-chat/` | POST   | Endpoint for Retrieving Real-Time Weather Data from the KMA API and provides a response. |
+| Weather Query | `/chatgpt/weather-chat/` | GET   | Endpoint for Retrieving Real-Time Weather Data from the KMA API and provides a response. |
 
 <br><br>
 
