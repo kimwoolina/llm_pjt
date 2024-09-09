@@ -111,9 +111,11 @@ To set up and run the project, follow these steps:
 
 ## API Documentation
 
+
 | Name          | Endpoint                | Method | Description                                                 |
 |---------------|--------------------------|--------|-------------------------------------------------------------|
-| Weather Query | `/chatgpt/weather-chat/` | GET   | Endpoint for Retrieving Real-Time Weather Data from the KMA API and provides a response. |
+| Weather Query | `/chatgpt/weather-chat/` | GET    | Retrieves real-time weather data from the Weather API.     |
+| Location Data | `/myapp/location-data/`  | GET    | Retrieves location data from an Excel file.                |
 
 <br><br>
 
@@ -123,4 +125,7 @@ To set up and run the project, follow these steps:
 
 <img width="1421" alt="스크린샷 2024-09-07 오전 5 04 05" src="https://github.com/user-attachments/assets/393f4507-ffea-438c-80ef-09ed75c99b6e">
 
+<br><br>
 
+## Contacts
+For any issues or inquiries, please contact kimwoolina@gmail.com
