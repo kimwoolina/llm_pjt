@@ -32,7 +32,13 @@
             </div>
         </nav>
     </div>
+
     <div class="container">
+        <!-- 로고 추가 -->
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </div>
+        
         {% block content %}
         <div class="chat-container">
             <div class="chat-header">

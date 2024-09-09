@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     chatBody.appendChild(loadingMessageElement);
 
                     chatBody.scrollTop = chatBody.scrollHeight;
-                }, 2000); // 2초 후 로딩 메시지 표시
+                }, 1500); // 2초 후 로딩 메시지 표시
 
                 // 응답을 기다립니다
                 fetch(`/chatgpt/weather-chat/?message=${encodeURIComponent(message)}`, {
