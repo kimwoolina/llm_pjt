@@ -10,30 +10,34 @@ A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the 
 <br>
 
 ## TechStack
-- :art: **Front-End**
+
+- **Front-End**
 
   - **Language**
-    - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+    - HTML5
+      - [![HTML5 Version](https://img.shields.io/badge/HTML5-5.0.1-blue)](https://www.w3.org/TR/html5/)
+    - CSS3
+      - [![CSS3 Version](https://img.shields.io/badge/CSS3-3.0-1572B6)](https://www.w3.org/Style/CSS/)
 
-      <br>
-      
-- :computer: **Back-End**
+- **Back-End**
 
   - **Language**
-    - ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
-
+    - Python 
+      - [![Python Version](https://img.shields.io/badge/Python-3.12.4-3776AB)](https://www.python.org/)
+  
   - **Framework**
-    - ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+    - Django 
+      - [![Django Version](https://img.shields.io/pypi/v/Django.svg)](https://pypi.org/project/Django/)
 
-<br>
-
-- :cloud: **APIs**
+- **APIs**
 
   - **Language Model**
-    - ![OpenAI](https://img.shields.io/badge/OpenAI-GPT-000000?style=for-the-badge&logo=openai&logoColor=white)
+    - OpenAI 
+      - [![OpenAI Version](https://img.shields.io/pypi/v/openai.svg)](https://pypi.org/project/openai/)
 
   - **Weather Data**
-    - ![KMA](https://img.shields.io/badge/KMA-Weather-005B8A?style=for-the-badge&logo=kma&logoColor=white)
+    - KMA
+      - [![KMA Version](https://img.shields.io/badge/KMA-1.0.0-blue)](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)
 
 <br><br>
 
