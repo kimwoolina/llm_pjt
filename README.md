@@ -33,7 +33,7 @@ A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the 
 
   - **Language Model**
     - OpenAI 
-      - [![OpenAI Version](https://img.shields.io/pypi/v/openai.svg)]([https://pypi.org/project/openai/](https://platform.openai.com/docs/overview)
+      - [![OpenAI Version](https://img.shields.io/pypi/v/openai.svg)](https://pypi.org/project/openai/)
 
   - **Weather Data**
     - KMA
