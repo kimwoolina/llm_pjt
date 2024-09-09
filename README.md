@@ -114,8 +114,8 @@ To set up and run the project, follow these steps:
 
 | Name          | Endpoint                | Method | Description                                                 |
 |---------------|--------------------------|--------|-------------------------------------------------------------|
-| Weather Query | `/chatgpt/weather-chat/` | GET    | Retrieves real-time weather data from the Weather API.     |
-| Location Data | `/myapp/location-data/`  | GET    | Retrieves location data from an Excel file.                |
+| Weather Query | `/chatgpt/weather-chat/` | GET    | Retrieves real-time weather data from the Weather API, enhanced by an LLM|
+| Location Data | `/myapp/location-data/`  | GET    | Retrieves location data from an Excel file.|
 
 <br><br>
 
