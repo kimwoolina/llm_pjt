@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 
-def get_weather_data(service_key, nx='55', ny='127'):
+def get_weather_data(service_key, nx='60', ny='127'):
     url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
 
     now = datetime.now()
