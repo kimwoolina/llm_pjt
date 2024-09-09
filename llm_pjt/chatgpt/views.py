@@ -4,6 +4,7 @@ from django.conf import settings
 from .utils import find_location_coordinates, get_weather_info
 from .bots import ask_chatgpt
 from .prompts import prompt, create_system_instructions
+from .serializers import WeatherInfoSerializer
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,10 +35,14 @@ class WeatherChatAPIView(APIView):
             weather_info = get_weather_info(settings.SERVICE_KEY, 
                                             nx=location_coords['x'], 
                                             ny=location_coords['y'])
-
+            
+            # Serializer 사용
+            serializer = WeatherInfoSerializer(weather_info)
+            weather_info_data = serializer.data
+            
             # ChatGPT에 날씨 정보 전송
             try:
-                chatgpt_response = ask_chatgpt(user_message, create_system_instructions(weather_info))
+                chatgpt_response = ask_chatgpt(user_message, create_system_instructions(weather_info_data))
             except Exception as e:
                 logger.error(f"ChatGPT 요청 실패: {str(e)}")
                 return Response({"error": "날씨 정보를 가져오는 중 문제가 발생했습니다."}, status=500)
