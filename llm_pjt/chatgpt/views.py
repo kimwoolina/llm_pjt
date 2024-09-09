@@ -3,60 +3,76 @@ from rest_framework.response import Response
 from django.conf import settings
 from .weather import get_weather_data
 from .bots import ask_chatgpt
+from .prompts import prompt, create_system_instructions
+import os
+import json
+import logging
+
+logger = logging.getLogger(__name__)
+
+# 좌표 정보 json 파일 불러오기
+def load_location_data():
+    file_path = os.path.join(os.path.dirname(__file__), 'data', 'locations.json')
+    
+    # JSON 파일 읽기
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
+
+
+# 위치 좌표 찾기
+def find_location_coordinates(location_name):
+    location_data = load_location_data()
+    
+    # 지역 이름에 location_name이 포함된 경우 검색
+    for location in location_data:
+        if location_name in location['name']:  # 부분 문자열이 포함되면 True
+            return location  # 일치하는 첫 번째 지역 좌표 반환
+        
+    return None # 일치하는 지역이 없을 경우
+
 
 
 class WeatherChatAPIView(APIView):
     def get(self, request):
         user_message = request.GET.get("message")
 
-        # 날씨 정보 가져오기
-        weather_info = get_weather_data(settings.SERVICE_KEY)
-        
-        # 시스템 안내 메시지 생성
-        system_instructions = create_system_instructions(weather_info)
+        if not user_message:
+            return Response({"error": "메시지를 제공해 주세요."}, status=400)
 
-        # ChatGPT에 메시지 전송
+        # ChatGPT에 메시지 전송하여 위치 추출
         try:
-            chatgpt_response = ask_chatgpt(user_message, system_instructions)
+            chatgpt_response = ask_chatgpt(user_message, prompt)
         except Exception as e:
-            return Response({"error": str(e)}, status=500)
+            logger.error(f"ChatGPT 요청 실패: {str(e)}")
+            return Response({"error": "정보를 가져오는 중 문제가 발생했습니다."}, status=500)
+        
+        # 위치 이름 추출
+        location_name = chatgpt_response
 
-        return Response({"message": chatgpt_response})
-    
-def create_system_instructions(weather_info):
-    return f"""
-당신은 날씨 관련 정보를 제공하는 기상 전문가입니다. 
-사용자가 날씨에 대한 질문을 하면, {weather_info} 정보를 기반으로 다음과 같은 형식으로 대답해 주세요:
+        # 위치 좌표 찾기
+        location_coords = find_location_coordinates(location_name)
+        if not location_coords:
+            return Response({"message": chatgpt_response})
+        
+        print("location_coords: " , location_coords)
+        
+        # 날씨 정보 가져오기
+        try:
+            weather_info = get_weather_data(settings.SERVICE_KEY, 
+                                            nx=location_coords['x'], 
+                                            ny=location_coords['y'])
+            
+            # 시스템 안내 메시지 생성
+            system_instructions = create_system_instructions(weather_info)
 
-1. 통상적 또는 대략적인 날씨 정보:
-- 🌧 강수 여부: {weather_info.get('rain', '정보 없음')}
-- 🌡️ 기온: {weather_info.get('temperature', '온도 정보 없음')}
-- 💧 습도: {weather_info.get('humidity', '습도 정보 없음')}
-- 🌬️ 바람 속도: {weather_info.get('wind_speed', '바람 속도 정보 없음')}
-- 🧭 바람 방향: {weather_info.get('wind_direction', '바람 방향 정보 없음')}
+            # ChatGPT에 메시지 전송
+            try:
+                chatgpt_response = ask_chatgpt(user_message, system_instructions)
+            except Exception as e:
+                logger.error(f"ChatGPT 요청 실패: {str(e)}")
+                return Response({"error": "날씨 정보를 가져오는 중 문제가 발생했습니다."}, status=500)
 
-예를 들어:
-사용자가 "지금 날씨 어때?" 라고 묻는다면 ->
-- 🌧 강수 여부: {weather_info.get('rain', '비 없음')}
-- 🌡️ 기온: {weather_info.get('temperature', '선선한 날씨')}
-- 💧 습도: {weather_info.get('humidity', '중간 습도')}
-- 🌬️ 바람 속도: {weather_info.get('wind_speed', '3.1 m/s')}
-- 🧭 바람 방향: {weather_info.get('wind_direction', '71°')}
-
-2. 구체적인 날씨 정보 요청:
-- 강수량, 바람의 세기, 특정 지역의 기온, 습도 등과 같은 세부적인 정보를 요청할 경우, 해당 정보에 맞게 대답해 주세요.
-
-이러한 형식으로, 사용자가 원하는 정보에 맞게 적절히 대답해 주세요.
-
-예시:
-- "서울의 현재 기온은?" -> "서울의 현재 기온은 25.3°C 입니다."
-- "현재 비가 오나요?" 
-비가 오는 경우 -> "현재 강수량은 {weather_info.get('rain', '비 없음')}입니다."
-비가 오지 않는 경우({weather_info.get('rain', '비 없음')})가 '비 없음' 인 경우) -> "현재는 비가 내리지 않습니다."
-- "고양시의 강수량은 얼마인가요?" -> "고양시의 현재 강수량은  {weather_info.get('rain', '비 없음')} 입니다."
-- "현재 서울의 바람 속도는 얼마인가요?" -> "현재 서울의 바람 속도는 {weather_info.get('wind_speed', '바람 속도 정보 없음')}입니다."
-- "대전의 기온이 어떻게 되나요?" -> "현재 대전의 기온은 {weather_info.get('temperature', '온도 정보 없음')} 입니다."
-
-
-{weather_info} 정보를 활용하여 사용자가 원하는 날씨 정보를 적절하게 제공해 주세요.
-"""
+            return Response({"message": chatgpt_response})
+        except Exception as e:
+            logger.error(f"날씨 데이터 요청 실패: {str(e)}")
+            return Response({"error": "날씨 정보를 가져오는 중 문제가 발생했습니다."}, status=500)

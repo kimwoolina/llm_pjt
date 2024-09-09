@@ -14,9 +14,6 @@ class LocationDataView(APIView):
     def get(self, request, *args, **kwargs):
         # 엑셀 파일의 절대 경로를 설정
         excel_file_path = os.path.join(settings.BASE_DIR, 'myapp', 'static', 'myapp', 'location.xlsx')
-        
-        # 디버깅: 경로 확인
-        print(f"엑셀 파일 경로: {excel_file_path}")
 
         # 엑셀 파일을 읽어들임
         df = pd.read_excel(excel_file_path)
