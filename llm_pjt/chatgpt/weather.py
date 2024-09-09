@@ -76,22 +76,22 @@ def get_weather_data(service_key, nx='60', ny='127'):
             temp = float(value)
             weather_info['temperature'] = f"{value}°C"  # 기온 그대로 저장
             if temp < 10:
-                weather_info['temperature'] = '추운 날씨'
+                weather_info['temperature'] = '추운 편'
             elif 10 <= temp <= 20:
-                weather_info['temperature'] = '선선한 날씨'
+                weather_info['temperature'] = '선선한 편'
             else:
-                weather_info['temperature'] = '더운 날씨'
+                weather_info['temperature'] = '더운 편'
 
         # 습도 (REH)
         if category == 'REH':
             humidity = int(value)
             weather_info['humidity'] = f"{humidity}%"
             if humidity > 80:
-                weather_info['humidity'] = '높은 습도'
+                weather_info['humidity'] = '높은 편'
             elif 50 <= humidity <= 80:
-                weather_info['humidity'] = '중간 습도'
+                weather_info['humidity'] = '보통'
             else:
-                weather_info['humidity'] = '낮은 습도'
+                weather_info['humidity'] = '낮은 편'
 
         # 바람 속도 (WSD)
         if category == 'WSD':

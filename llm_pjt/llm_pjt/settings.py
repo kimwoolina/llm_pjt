@@ -80,6 +80,17 @@ DATABASES = {
     }
 }
 
+# Redis를 django의 cache로 사용
+CACHES = {  
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
 AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
