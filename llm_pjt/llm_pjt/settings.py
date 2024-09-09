@@ -18,8 +18,8 @@ OPEN_API_KEY = config.OPENAI_API_KEY
 SERVICE_KEY = config.SERVICE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
