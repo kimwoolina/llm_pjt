@@ -4,6 +4,11 @@ A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the 
 
 <br>
 
+## Duration
+24.09.05 - 24.09.10
+
+<br>
+
 ## TechStack
 - :art: **Front-End**
 
