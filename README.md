@@ -28,13 +28,12 @@ A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the 
   - **Framework**
     - Django 
       - [![Django Version](https://img.shields.io/pypi/v/Django.svg)](https://pypi.org/project/Django/)
-      - [![Django Downloads](https://img.shields.io/pypi/dm/Django.svg)](https://pypi.org/project/Django/#history)
 
 - **APIs**
 
   - **Language Model**
     - OpenAI 
-      - [![OpenAI Version](https://img.shields.io/pypi/v/openai.svg)]([https://pypi.org/project/openai/](https://platform.openai.com/docs/overview))
+      - [![OpenAI Version](https://img.shields.io/pypi/v/openai.svg)]([https://pypi.org/project/openai/](https://platform.openai.com/docs/overview)
 
   - **Weather Data**
     - KMA
