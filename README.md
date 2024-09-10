@@ -28,6 +28,11 @@ A **dynamic AI-powered platform** that leverages **OpenAI's GPT model** and the 
   - **Framework**
     - Django 
       - [![Django Version](https://img.shields.io/pypi/v/Django.svg)](https://pypi.org/project/Django/)
+     
+  - **Database & Caching**
+    - Redis
+      - [![Redis Version](https://img.shields.io/badge/Redis-7.2.5-D82C20)](https://redis.io/)
+
 
 - **APIs**
 
